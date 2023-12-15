@@ -35,10 +35,22 @@ const postsArr = [
   },
 ];
 
+let lastPostId = 4;
+
 // Meddleware
 app.use(morgan("dev"));
+app.use(cors());
+app.use(express.json()); // for parsing application/json
 
 // Routes
+app.post("/posts", (request, response) => {
+  const newPostObj = request.body;
+  newPostObj.id = ++lastPostId;
+  postsArr.push(newPostObj);
+  console.log(newPostObj);
+  response.json(postsArr);
+});
+
 app.get("/", (req, res) => {
   res.json({ msg: "home route" });
 });
@@ -53,9 +65,17 @@ app.get("/posts/dates", (req, res) => {
   res.json(datesArr);
 });
 // GET - /posts?id=5 - grazins post su id 5
-app.get("/posts", (req, res) => {
-  const userId = req.query.id; // visada stringas
-  const found = users.find((userObj) => userObj.id === +userId);
+app.get("/posts/:postId", (req, res) => {
+  const postId = req.params.postId; // visada stringas
+  const found = postsArr.find((userObj) => userObj.id === +postId);
+
+  // jei neradom
+  if (found === undefined) {
+    res.status(404).json({
+      msg: `Post with id: ${postId} was not found`,
+    });
+    return;
+  }
   res.json(found);
 });
 

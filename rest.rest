@@ -7,14 +7,14 @@ GET http://localhost:3000/posts
 GET http://localhost:3000/posts/dates
 
 ### // GET - /posts id
-GET http://localhost:3000/posts?id=4
+GET http://localhost:3000/posts/5
 
 ### // Creat new POst
 POST http://localhost:3000/posts
 Content-Type: application/json
 
 {
-"title": "Post 18",
-"content": "Body of post 8",
-"date": "2023-11-01",
+  "title": "Post 9",
+  "content": "Body of post 8",
+  "date": "2023-11-01"
 }
