@@ -1,0 +1,26 @@
+{
+  "name": "03_node_post_front_back",
+  "version": "1.0.0",
+  "description": "Front and Back, post request",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "node",
+    "post",
+    "api",
+    "req",
+    "body",
+    "request params"
+  ],
+  "author": "Sarunas Tarvydas",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
