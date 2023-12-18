@@ -9,6 +9,9 @@ GET http://localhost:3000/posts/dates
 ### // GET - /posts id
 GET http://localhost:3000/posts/5
 
+### // GET - /posts search
+GET http://localhost:3000/posts/search?q=titi
+
 ### // Creat new POst
 POST http://localhost:3000/posts
 Content-Type: application/json

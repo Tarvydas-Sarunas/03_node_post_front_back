@@ -6,6 +6,8 @@ const API_URL = "http://localhost:3000";
 const els = {
   form: document.forms[0],
   postsContainer: document.querySelector("#posts"),
+  searchInp: document.getElementById("search"),
+  searchBtn: document.getElementById("seach-btn"),
 };
 
 els.form.addEventListener("submit", addNewPostHandler);
@@ -33,6 +35,9 @@ function addNewPost(newPostObj) {
     .then((postsArr) => {
       console.log(postsArr);
       renderPosts(postsArr);
+    })
+    .catch((error) => {
+      console.warn("ivyko klaida:", error);
     });
 }
 
@@ -64,3 +69,24 @@ function renderPosts(arr) {
   });
   els.postsContainer.innerHTML = HtmlArr.join("");
 }
+
+// nusitaikyti i search input
+
+// mygtuko paspaudimu siusti fetch
+els.searchBtn.addEventListener("click", () => {
+  // paimti jo value
+  const needToSearch = els.searchInp.value;
+
+  fetch(`${API_URL}/posts/search?q=${needToSearch}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log("data ===", data);
+      renderPosts(data);
+    })
+    .catch((error) => {
+      console.warn("ivyko klaida:", error);
+    });
+});
+
+// GET http://localhost:3000/posts/search?q=james
+// gavus atsakyma sugeneruojam postus su renderPosts
